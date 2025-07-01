@@ -39,7 +39,7 @@
   .collapsible {
     cursor: pointer;
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: space-between;
     background: none;
     border: none;

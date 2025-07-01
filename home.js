@@ -38,7 +38,7 @@ function applyTheme(theme) {
   }, 200);
 }
 
-
+// function for handling clicks to collapse content sections
 document.querySelectorAll('.collapsible').forEach(button => {
   button.addEventListener('click', () => {
     const content = button.nextElementSibling;
