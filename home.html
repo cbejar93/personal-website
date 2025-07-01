@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Engineer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a74d3cc9b5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script  src="server.js"></script>
+
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleDarkMode()">
+      <i id="theme-icon" class="fas fa-moon"></i> Toggle Dark Mode
+    </button>
+    <header>
+      <h1>Jane Doe</h1>
+      <p>Software Engineer | Full-Stack Developer | Open Source Enthusiast</p>
+    </header>
+  
+    <div class="container">
+      <section>
+        <button class="collapsible"><h2>About Me</h2><i class="fas fa-chevron-right"></i></button>
+        <div class="collapsible-content">
+          <p>
+            I'm a passionate software engineer with experience building web applications, APIs, and scalable backend systems. I enjoy working with modern technologies and contributing to open source.
+          </p>
+          <div class="skills">
+            <div><i class="fab fa-js"></i> JavaScript</div>
+            <div><i class="fab fa-java"></i> Java</div>
+            <div><i class="fa-brands fa-node-js"></i>Node</div>
+            <div><i class="fab fa-js-square"></i> TypeScript</div>
+            <div><i class="fa-brands fa-angular"></i>Angular</div>
+            <div><i class="fa-brands fa-react"></i>React</div>
+            <div><i class="fa-brands fa-vuejs"></i>Vue</div>
+            <div><i class="fa-solid fa-database"></i>OracleDB</div>
+            <div><i class="fa-solid fa-database"></i>MongoDB</div>
+            <div><i class="fa-solid fa-database"></i>PLSQL</div>
+            <div><i class="fa-brands fa-redhat"></i>OpenShift</div>
+          </div>
+        </div>
+      </section>
+  
+      <section>
+        <button class="collapsible"><h2>Projects</h2><i class="fas fa-chevron-right"></i></button>
+        <div class="collapsible-content">
+          <div class="project">
+            <h3>DevTracker</h3>
+            <p>A productivity app for developers to track time, tasks, and goals.</p>
+            <p><a href="#">View Project</a></p>
+          </div>
+          <div class="project">
+            <h3>CodeShare</h3>
+            <p>Collaborative real-time code editor with syntax highlighting and live preview.</p>
+            <p><a href="#">View Project</a></p>
+          </div>
+        </div>
+      </section>
+  
+      <section>
+        <button class="collapsible"><h2>Contact</h2><i class="fas fa-chevron-right"></i></button>
+        <div class="collapsible-content">
+          <p>Email: janedoe@example.com</p>
+          <p>GitHub: <a href="https://github.com/janedoe">github.com/janedoe</a></p>
+          <p>LinkedIn: <a href="https://linkedin.com/in/janedoe">linkedin.com/in/janedoe</a></p>
+        </div>
+      </section>
+    </div>
+  
+    <footer>
+      <p>&copy; 2025 Jane Doe. All rights reserved.</p>
+    </footer>
+
+
+    <script  src="home.js"></script>
+
+</body>
+</html>
