@@ -52,6 +52,7 @@
   }
   .collapsible-content {
     overflow: hidden;
+    max-height: 1000px;
     transition: max-height 0.3s ease;
   }
   .collapsible-content.collapsed {
@@ -63,6 +64,18 @@
   }
   .project {
     margin-bottom: 1.5rem;
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .project:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
   }
   .project h3 {
     margin: 0.2rem 0;
@@ -147,4 +160,9 @@
     .skills {
       font-size: 1.25rem;
     }
+    .project {
+        padding: 1rem;
+        font-size: 0.95rem;
+        max-width: 100%;
+      }
   }
