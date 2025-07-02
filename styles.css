@@ -48,8 +48,14 @@
     font-size: 1.5rem;
     color: var(--primary);
   }
+  .collapsible-title {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
   .collapsible i {
+    margin-left: 0.5rem;
     transition: transform 0.3s ease;
+    font-size: 1.2rem;
   }
   .collapsible.active i {
     transform: rotate(90deg);
