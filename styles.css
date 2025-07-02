@@ -134,6 +134,13 @@
     padding: 2rem;
     background-color: var(--primary);
     color: white;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  footer.reveal {
+    opacity: 1;
+    transform: translateY(0);
   }
   a {
     color: var(--primary);

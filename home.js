@@ -83,4 +83,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     applyTheme(prefersDark ? 'dark' : 'light');
   }
+
+  // animates the footer
+  const footer = document.querySelector('footer');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        footer.classList.add('reveal');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  observer.observe(footer);
+
 });
