@@ -37,6 +37,23 @@
     font-size: 1.2rem;
     margin-top: 0.5rem;
   }
+  header .social-icons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+  
+  header .social-icons a {
+    color: white;
+    font-size: 1.75rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  header .social-icons a:hover {
+    transform: scale(1.2);
+    color: var(--button); /* Optional: yellow on hover, or adjust */
+  }
   .container {
     max-width: 900px;
     margin: 2rem auto;
@@ -183,6 +200,9 @@
   }
   .toggle-btn:hover {
     background-color: #2746a6;
+  }
+  #blurb{
+    text-align: left;
   }
   @media (max-width: 600px) {
     header {
