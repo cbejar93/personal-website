@@ -6,6 +6,9 @@
     --primary: #fb923c;
     --button: #4169e1;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   html, body {
     height: 100%;
     margin: 0;
@@ -26,21 +29,16 @@
   header {
     background: linear-gradient(200deg, #ff6a00, #ffb347);
     color: white;
-    padding: 4rem 2rem 2rem;
+    padding: 4rem 2rem 3.5rem;
     text-align: center;
+    position: relative;
   }
   header h1 {
     margin: 0;
     font-size: 2.5rem;
-    background: linear-gradient(90deg, #fff, #ffb347, #fff);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 3s linear infinite;
-  }
-  @keyframes shimmer {
-    to { background-position: 200% center; }
+    color: white;
+    font-weight: 700;
+    letter-spacing: -0.5px;
   }
   header p {
     font-size: 1.2rem;
@@ -581,6 +579,68 @@
     text-decoration: none;
   }
 
+  /* Scroll-down indicator */
+  .scroll-down {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.5);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 0.85rem;
+    animation: bounce-down 2s ease infinite;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s ease;
+  }
+  .scroll-down:hover {
+    background: rgba(255,255,255,0.35);
+  }
+  @keyframes bounce-down {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(5px); }
+  }
+
+  /* Toast notification */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    background: #1f2937;
+    color: white;
+    padding: 0.55rem 1.3rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 9999;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .dark-mode .toast {
+    background: #f9fafb;
+    color: #111827;
+  }
+
+  /* Email card copy cursor hint */
+  #email-contact-card {
+    cursor: copy;
+  }
+
   /* Accessibility: disable all animations for users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     header h1,
@@ -590,7 +650,8 @@
     .dark-mode footer,
     #tagline-text::after,
     .status-dot,
-    .avatar-wrapper {
+    .avatar-wrapper,
+    .scroll-down {
       animation: none !important;
     }
   }

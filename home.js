@@ -69,7 +69,47 @@ document.querySelectorAll('.collapsible').forEach(button => {
   content.style.maxHeight = content.scrollHeight + 'px';
 });
 
+function showToast(message) {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toast._hideTimer);
+  toast._hideTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Click-to-copy email
+  const emailCard = document.getElementById('email-contact-card');
+  if (emailCard) {
+    emailCard.addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = 'cbejar93@gmail.com';
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(email).then(() => {
+          showToast('Email copied to clipboard');
+        }).catch(() => {
+          window.location.href = 'mailto:' + email;
+        });
+      } else {
+        window.location.href = 'mailto:' + email;
+      }
+    });
+  }
+
+  // Scroll-down arrow
+  const scrollBtn = document.querySelector('.scroll-down');
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', () => {
+      document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
   // Dynamic copyright year
   document.getElementById('current-year').textContent = new Date().getFullYear();
 
