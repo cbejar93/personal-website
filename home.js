@@ -159,14 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Scroll-down arrow
-  const scrollBtn = document.querySelector('.scroll-down');
-  if (scrollBtn) {
-    scrollBtn.addEventListener('click', () => {
-      document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-
   // Star-field hero canvas
   initStarField();
 
