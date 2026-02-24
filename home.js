@@ -14,6 +14,9 @@ function applyTheme(theme) {
   icon.style.transform = 'rotate(180deg)';
 
   setTimeout(() => {
+    // Remove early-paint dark class now that the real theme class takes over
+    document.documentElement.classList.remove('dark-mode-early');
+
     if (theme === 'dark') {
       body.classList.add('dark-mode');
       icon.classList.remove('fa-moon');
@@ -32,6 +35,10 @@ function applyTheme(theme) {
 
 function typeWriter(elementId, phrases, speed = 80, pause = 2000) {
   const el = document.getElementById(elementId);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = phrases[0];
+    return;
+  }
   let phraseIndex = 0, charIndex = 0, isDeleting = false;
   function tick() {
     const current = phrases[phraseIndex];
