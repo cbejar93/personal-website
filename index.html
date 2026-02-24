@@ -19,6 +19,9 @@
     </button>
     <header>
       <div class="avatar" aria-hidden="true">CB</div>
+      <div class="status-badge">
+        <span class="status-dot"></span> Available for opportunities
+      </div>
       <h1>Carlos Bejar</h1>
       <p id="tagline-text"></p>
       <div class="social-icons">
@@ -28,6 +31,11 @@
         <a href="https://www.linkedin.com/in/carlos-bejar-990726148/" target="_blank" aria-label="LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num">4+</span><span class="stat-label">Years Exp</span></div>
+        <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Projects</span></div>
+        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Tech Stacks</span></div>
       </div>
       <a href="files/carlos-bejar-resume.pdf" download class="resume-btn">
         <i class="fas fa-download"></i> Download Resume
@@ -44,19 +52,34 @@
           <p id="blurb">
             I'm a passionate software engineer with experience building web applications, APIs, and scalable backend systems. I enjoy working with modern technologies and contributing on great teams! Below are a list of technologies that I have used in professional or personal settings.
           </p>
-          <ul class="skills" role="list">
-            <li><i class="fab fa-js"></i> JavaScript</li>
-            <li><i class="fab fa-java"></i> Java</li>
-            <li><i class="fa-brands fa-node-js"></i> Node</li>
-            <li><i class="fab fa-js-square"></i> TypeScript</li>
-            <li><i class="fa-brands fa-angular"></i> Angular</li>
-            <li><i class="fa-brands fa-react"></i> React</li>
-            <li><i class="fa-brands fa-vuejs"></i> Vue</li>
-            <li><i class="fa-solid fa-database"></i> OracleDB</li>
-            <li><i class="fa-solid fa-database"></i> MongoDB</li>
-            <li><i class="fa-solid fa-database"></i> PLSQL</li>
-            <li><i class="fa-brands fa-redhat"></i> OpenShift</li>
-          </ul>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <h4 class="skill-group-label">Frontend</h4>
+              <ul class="skills" role="list">
+                <li><i class="fab fa-js"></i> JavaScript</li>
+                <li><i class="fab fa-js-square"></i> TypeScript</li>
+                <li><i class="fa-brands fa-angular"></i> Angular</li>
+                <li><i class="fa-brands fa-react"></i> React</li>
+                <li><i class="fa-brands fa-vuejs"></i> Vue</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h4 class="skill-group-label">Backend</h4>
+              <ul class="skills" role="list">
+                <li><i class="fa-brands fa-node-js"></i> Node.js</li>
+                <li><i class="fab fa-java"></i> Java</li>
+                <li><i class="fa-solid fa-database"></i> OracleDB</li>
+                <li><i class="fa-solid fa-database"></i> MongoDB</li>
+                <li><i class="fa-solid fa-database"></i> PLSQL</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h4 class="skill-group-label">Infrastructure</h4>
+              <ul class="skills" role="list">
+                <li><i class="fa-brands fa-redhat"></i> OpenShift</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
