@@ -109,6 +109,7 @@
   .collapsible-content {
     overflow: hidden;
     transition: max-height 0.3s ease;
+    width: 100%;
   }
   .collapsible-content.collapsed {
     max-height: 0;
@@ -642,27 +643,30 @@
     border-color: rgba(251,146,60,0.4);
   }
 
-  /* Resume button */
-  .resume-btn {
+  /* Floating resume button */
+  .resume-fab {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1rem;
+    z-index: 1000;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    margin-top: 1.25rem;
-    padding: 0.6rem 1.4rem;
-    background: rgba(255,255,255,0.2);
+    gap: 0.45rem;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, #fb923c, #f97316);
     color: white;
-    border: 2px solid rgba(255,255,255,0.7);
     border-radius: 999px;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-decoration: none;
-    transition: background 0.2s ease, transform 0.2s ease;
-    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 14px rgba(251,146,60,0.45);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .resume-btn:hover {
-    background: rgba(255,255,255,0.35);
+  .resume-fab:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(251,146,60,0.6);
     text-decoration: none;
+    color: white;
   }
 
   /* Toast notification */
