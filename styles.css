@@ -352,6 +352,24 @@
     background-color: rgba(251,146,60,0.1);
   }
 
+  /* Project site link */
+  .project-site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    transition: gap 0.2s ease, opacity 0.2s ease;
+  }
+  .project-site-link:hover {
+    opacity: 0.8;
+    gap: 0.55rem;
+    text-decoration: none;
+  }
+
   /* Experience section */
   .experience-item {
     max-width: 600px;
