@@ -3,17 +3,11 @@ function toggleDarkMode() {
   const newTheme = isDark ? 'light' : 'dark';
   localStorage.setItem('theme', newTheme);
   applyTheme(newTheme);
-
-
-  // Update text label (optional if keeping fixed)
-  const label = body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
-  icon.nextSibling.nodeValue = ` ${label}`;
 }
 
 function applyTheme(theme) {
   const body = document.body;
   const icon = document.getElementById('theme-icon');
-  const toggleText = document.querySelector('.toggle-btn');
 
   // Begin icon transition
   icon.style.opacity = 0;
@@ -24,18 +18,33 @@ function applyTheme(theme) {
       body.classList.add('dark-mode');
       icon.classList.remove('fa-moon');
       icon.classList.add('fa-sun');
-      icon.nextSibling.nodeValue = ' Toggle Light Mode';
     } else {
       body.classList.remove('dark-mode');
       icon.classList.remove('fa-sun');
       icon.classList.add('fa-moon');
-      icon.nextSibling.nodeValue = ' Toggle Dark Mode';
     }
 
     // Restore icon appearance after swap
     icon.style.opacity = 1;
     icon.style.transform = 'rotate(0deg)';
   }, 200);
+}
+
+function typeWriter(elementId, phrases, speed = 80, pause = 2000) {
+  const el = document.getElementById(elementId);
+  let phraseIndex = 0, charIndex = 0, isDeleting = false;
+  function tick() {
+    const current = phrases[phraseIndex];
+    el.textContent = isDeleting
+      ? current.substring(0, charIndex - 1)
+      : current.substring(0, charIndex + 1);
+    isDeleting ? charIndex-- : charIndex++;
+    let delay = isDeleting ? speed / 2 : speed;
+    if (!isDeleting && charIndex === current.length) { delay = pause; isDeleting = true; }
+    else if (isDeleting && charIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; }
+    setTimeout(tick, delay);
+  }
+  tick();
 }
 
 // function for handling clicks to collapse content sections
@@ -61,22 +70,11 @@ document.querySelectorAll('.collapsible').forEach(button => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const body = document.body;
-  const icon = document.getElementById('theme-icon');
-  const toggleText = document.querySelector('.toggle-btn');
-// text if generated fully for button here.
-  if (body.classList.contains('dark-mode')) {
-    icon.classList.remove('fa-moon');
-    icon.classList.add('fa-sun');
-    icon.nextSibling.nodeValue = ' Toggle Light Mode';
-  } else {
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
-    icon.nextSibling.nodeValue = ' Toggle Dark Mode';
-  }
-//  grabs theme from local storage or checks if user has a prefrence in the browser
-  const savedTheme = localStorage.getItem('theme');
+  // Dynamic copyright year
+  document.getElementById('current-year').textContent = new Date().getFullYear();
 
+  // Theme initialization
+  const savedTheme = localStorage.getItem('theme');
   if (savedTheme) {
     applyTheme(savedTheme);
   } else {
@@ -84,9 +82,20 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(prefersDark ? 'dark' : 'light');
   }
 
-  // animates the footer
-  const footer = document.querySelector('footer');
+  // Typing animation for tagline
+  typeWriter('tagline-text', ['Software Engineer', 'Full-Stack Developer', 'Node.js Enthusiast', 'API Architect']);
 
+  // Scroll-reveal for sections
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('section').forEach(section => {
+    section.classList.add('reveal-on-scroll');
+    revealObserver.observe(section);
+  });
+
+  // Footer animation
+  const footer = document.querySelector('footer');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -96,7 +105,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }, {
     threshold: 0.1
   });
-
   observer.observe(footer);
-
 });
