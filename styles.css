@@ -671,6 +671,11 @@
     text-decoration: none;
     color: white;
   }
+  @media (max-width: 400px) {
+    .resume-fab {
+      bottom: 2.5rem;
+    }
+  }
 
   /* Toast notification */
   .toast {
@@ -703,6 +708,20 @@
   /* Email card copy cursor hint */
   #email-contact-card {
     cursor: copy;
+  }
+
+  /* Dark-mode early class applied by inline script to prevent flash on load */
+  html.dark-mode-early,
+  html.dark-mode-early body {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+  }
+
+  /* Keyboard focus rings — visible only when navigating via keyboard */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
   /* Accessibility: disable all animations for users who prefer reduced motion */

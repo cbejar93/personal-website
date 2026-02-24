@@ -8,14 +8,43 @@
   <meta property="og:title" content="Carlos Bejar | Software Engineer Portfolio" />
   <meta property="og:description" content="Full-Stack Developer specializing in Node.js, TypeScript, and cloud-native applications." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cbejar93.github.io/personal-website/" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/cbejar93?v=4" />
+  <meta property="og:image:width" content="400" />
+  <meta property="og:image:height" content="400" />
+  <link rel="canonical" href="https://cbejar93.github.io/personal-website/" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Carlos Bejar",
+    "url": "https://cbejar93.github.io/personal-website/",
+    "sameAs": [
+      "https://github.com/cbejar93",
+      "https://www.linkedin.com/in/carlos-bejar-990726148/"
+    ],
+    "jobTitle": "Software Engineer",
+    "email": "cbejar93@gmail.com",
+    "knowsAbout": ["JavaScript", "TypeScript", "Node.js", "React", "Angular", "Java", "Docker", "MongoDB"]
+  }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a74d3cc9b5.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark-mode-early');
+      }
+    })();
+  </script>
 </head>
 <body>
-    <button class="toggle-btn" onclick="toggleDarkMode()">
+    <button class="toggle-btn" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
       <i id="theme-icon" class="fas fa-moon"></i>
     </button>
     <header>
