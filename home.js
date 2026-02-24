@@ -69,6 +69,63 @@ document.querySelectorAll('.collapsible').forEach(button => {
   content.style.maxHeight = content.scrollHeight + 'px';
 });
 
+function initStarField() {
+  const canvas = document.getElementById('hero-stars');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const header = canvas.parentElement;
+
+  function resize() {
+    canvas.width = header.offsetWidth;
+    canvas.height = header.offsetHeight;
+  }
+  resize();
+  new ResizeObserver(resize).observe(header);
+
+  const NUM_STARS = 90;
+  const stars = Array.from({ length: NUM_STARS }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: Math.random() * 1.4 + 0.4,
+    baseOpacity: Math.random() * 0.5 + 0.25,
+    twinkleSpeed: Math.random() * 0.8 + 0.3,
+    twinklePhase: Math.random() * Math.PI * 2,
+    driftX: (Math.random() - 0.5) * 0.00012,
+    driftY: (Math.random() - 0.5) * 0.00006,
+  }));
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReducedMotion) {
+    // Static render only
+    const w = canvas.width, h = canvas.height;
+    for (const s of stars) {
+      ctx.beginPath();
+      ctx.arc(s.x * w, s.y * h, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${s.baseOpacity})`;
+      ctx.fill();
+    }
+    return;
+  }
+
+  function draw() {
+    const w = canvas.width, h = canvas.height;
+    const t = Date.now() * 0.001;
+    ctx.clearRect(0, 0, w, h);
+    for (const s of stars) {
+      s.x = (s.x + s.driftX + 1) % 1;
+      s.y = (s.y + s.driftY + 1) % 1;
+      const alpha = s.baseOpacity * (0.65 + 0.35 * Math.sin(t * s.twinkleSpeed + s.twinklePhase));
+      ctx.beginPath();
+      ctx.arc(s.x * w, s.y * h, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
 function showToast(message) {
   let toast = document.getElementById('toast');
   if (!toast) {
@@ -109,6 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
     });
   }
+
+  // Star-field hero canvas
+  initStarField();
 
   // Dynamic copyright year
   document.getElementById('current-year').textContent = new Date().getFullYear();

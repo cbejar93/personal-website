@@ -32,6 +32,13 @@
     padding: 4rem 2rem 3.5rem;
     text-align: center;
     position: relative;
+    overflow: hidden;
+  }
+  #hero-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.65;
   }
   header h1 {
     margin: 0;
@@ -367,10 +374,10 @@
     margin-bottom: 2rem;
     margin-left: 12px;
     text-align: left;
-    border-left: 3px solid var(--primary);
     padding-left: 1.25rem;
     position: relative;
   }
+  /* Timeline dot */
   .experience-item::before {
     content: '';
     position: absolute;
@@ -382,6 +389,22 @@
     background: var(--primary);
     border: 2px solid white;
     box-shadow: 0 0 0 2px var(--primary);
+    z-index: 1;
+    animation: pulse-timeline-dot 2.5s ease-in-out infinite;
+  }
+  /* Timeline line — starts below dot, doesn't appear on last item */
+  .experience-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 20px;
+    bottom: -2rem;
+    width: 3px;
+    background: var(--primary);
+  }
+  @keyframes pulse-timeline-dot {
+    0%, 100% { box-shadow: 0 0 0 2px var(--primary), 0 0 0 0px rgba(251,146,60,0.45); }
+    50%       { box-shadow: 0 0 0 2px var(--primary), 0 0 0 7px rgba(251,146,60,0); }
   }
   .dark-mode .experience-item::before {
     border-color: var(--bg-dark);
@@ -651,7 +674,8 @@
     #tagline-text::after,
     .status-dot,
     .avatar-wrapper,
-    .scroll-down {
+    .scroll-down,
+    .experience-item::before {
       animation: none !important;
     }
   }
