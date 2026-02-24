@@ -69,6 +69,13 @@ document.querySelectorAll('.collapsible').forEach(button => {
   content.style.maxHeight = content.scrollHeight + 'px';
 });
 
+// Recalculate max-height after fonts load to prevent content clipping
+document.fonts.ready.then(() => {
+  document.querySelectorAll('.collapsible-content:not(.collapsed)').forEach(content => {
+    content.style.maxHeight = content.scrollHeight + 'px';
+  });
+});
+
 function initStarField() {
   const canvas = document.getElementById('hero-stars');
   if (!canvas) return;
