@@ -123,6 +123,21 @@
     padding: 1.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .featured-badge {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    background: linear-gradient(90deg, #fb923c, #f97316);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.65rem;
+    border-radius: 12px 0 8px 0;
   }
   .project:hover {
     transform: translateY(-4px);
@@ -281,20 +296,35 @@
   }
 
   /* Avatar */
+  .avatar-wrapper {
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    margin: 0 auto 0.75rem;
+    padding: 3px;
+    background: conic-gradient(from 0deg, #fb923c, #ffb347, #fff8, #fb923c);
+    animation: spin-ring 4s linear infinite;
+    flex-shrink: 0;
+  }
+  @keyframes spin-ring {
+    to { transform: rotate(360deg); }
+  }
   .avatar {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     background: rgba(255,255,255,0.2);
-    border: 2px solid rgba(255,255,255,0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
     font-weight: 700;
     color: white;
-    margin: 0 auto 1rem;
+    margin: 0;
     backdrop-filter: blur(4px);
+  }
+  .dark-mode .avatar {
+    background: #1e293b;
   }
 
   /* Project card enhancements */
@@ -549,4 +579,18 @@
     background: rgba(255,255,255,0.35);
     transform: translateY(-2px);
     text-decoration: none;
+  }
+
+  /* Accessibility: disable all animations for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    header h1,
+    header,
+    footer,
+    .dark-mode header,
+    .dark-mode footer,
+    #tagline-text::after,
+    .status-dot,
+    .avatar-wrapper {
+      animation: none !important;
+    }
   }
