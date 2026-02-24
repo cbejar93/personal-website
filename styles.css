@@ -29,16 +29,19 @@
   header {
     background: linear-gradient(200deg, #ff6a00, #ffb347);
     color: white;
-    padding: 4rem 2rem 3.5rem;
+    padding: 4rem 2rem 2rem;
     text-align: center;
     position: relative;
-    overflow: hidden;
   }
   #hero-stars {
     position: absolute;
     inset: 0;
     pointer-events: none;
     opacity: 0.65;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
   }
   header h1 {
     margin: 0;
@@ -308,7 +311,6 @@
     margin: 0 auto 0.75rem;
     padding: 3px;
     background: conic-gradient(from 0deg, #fb923c, #ffb347, #fff8, #fb923c);
-    animation: spin-ring 4s linear infinite;
     flex-shrink: 0;
   }
   @keyframes spin-ring {
@@ -602,35 +604,6 @@
     text-decoration: none;
   }
 
-  /* Scroll-down indicator */
-  .scroll-down {
-    position: absolute;
-    bottom: 1.25rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.5);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: white;
-    font-size: 0.85rem;
-    animation: bounce-down 2s ease infinite;
-    backdrop-filter: blur(4px);
-    transition: background 0.2s ease;
-  }
-  .scroll-down:hover {
-    background: rgba(255,255,255,0.35);
-  }
-  @keyframes bounce-down {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(5px); }
-  }
-
   /* Toast notification */
   .toast {
     position: fixed;
@@ -673,8 +646,6 @@
     .dark-mode footer,
     #tagline-text::after,
     .status-dot,
-    .avatar-wrapper,
-    .scroll-down,
     .experience-item::before {
       animation: none !important;
     }
