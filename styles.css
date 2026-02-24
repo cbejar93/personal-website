@@ -25,6 +25,8 @@
     background-color: var(--bg-light);
     color: var(--text-light);
     transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
   }
   header {
     background: linear-gradient(200deg, #ff6a00, #ffb347);
@@ -373,7 +375,7 @@
   /* Experience section */
   .experience-item {
     max-width: 600px;
-    width: 100%;
+    width: calc(100% - 12px);
     margin-bottom: 2rem;
     margin-left: 12px;
     text-align: left;
