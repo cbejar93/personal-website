@@ -316,10 +316,10 @@
   /* Large-screen hero: avatar straddles left via negative margin, text centered */
   @media (min-width: 768px) {
     .avatar-outer {
-      max-width: 900px;
-      margin: -65px auto 0;  /* half of 130px desktop avatar size */
+      width: 100%;
+      margin: -65px 0 0;
       justify-content: flex-start;
-      padding-left: 1rem;
+      padding-left: max(1rem, calc((100% - 900px) / 2 + 1rem));
     }
     .avatar-wrapper {
       width: 130px;
