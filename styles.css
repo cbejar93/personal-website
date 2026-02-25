@@ -6,8 +6,12 @@
     --primary: #fb923c;
     --button: #4169e1;
   }
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   html, body {
     height: 100%;
