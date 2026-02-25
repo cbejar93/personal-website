@@ -272,29 +272,27 @@
     }
   }
 
-  /* Large-screen hero: avatar straddling left, text centered */
+  /* Large-screen hero: avatar straddles left via negative margin, text centered */
   @media (min-width: 768px) {
-    header {
-      padding-bottom: 75px;
+    .avatar-outer {
+      max-width: 900px;
+      margin: -65px auto 0;  /* half of 130px desktop avatar size */
+      justify-content: flex-start;
+      padding-left: 1rem;
+    }
+    .avatar-wrapper {
+      width: 130px;
+      height: 130px;
+      margin: 0;
+    }
+    .avatar {
+      font-size: 2.4rem;
     }
     .hero-content {
       text-align: center;
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-    }
-    /* Avatar: absolute, anchored to bottom-left of header, half-in / half-out */
-    .avatar-wrapper {
-      position: absolute;
-      bottom: -65px;
-      left: max(2rem, calc(50% - 440px));
-      width: 130px;
-      height: 130px;
-      margin: 0;
-      z-index: 10;
-    }
-    .avatar {
-      font-size: 2.4rem;
     }
     .hero-text {
       display: flex;
@@ -311,10 +309,6 @@
     }
     .hero-text .social-icons {
       justify-content: center;
-    }
-    .container {
-      padding-top: 90px;
-      margin-top: 0;
     }
   }
 
@@ -336,6 +330,15 @@
   .reveal-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Avatar outer — sits between header and container, straddles the boundary */
+  .avatar-outer {
+    display: flex;
+    justify-content: center;
+    margin-top: -54px;  /* half of 108px default avatar size */
+    position: relative;
+    z-index: 10;
   }
 
   /* Avatar */
