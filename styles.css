@@ -272,6 +272,45 @@
     }
   }
 
+  /* Large-screen hero: avatar left, text right */
+  @media (min-width: 768px) {
+    .hero-content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      text-align: left;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .avatar-wrapper {
+      width: 130px;
+      height: 130px;
+      margin: 0;
+      flex-shrink: 0;
+    }
+    .avatar {
+      font-size: 2.4rem;
+    }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+    }
+    /* Move h1 above the status badge */
+    .hero-text h1 {
+      order: -1;
+      margin-bottom: 0.4rem;
+    }
+    .hero-text .status-badge {
+      align-self: flex-start;
+      margin-top: 0;
+    }
+    .hero-text .social-icons {
+      justify-content: flex-start;
+    }
+  }
+
   /* Typing animation cursor */
   #tagline-text::after {
     content: '|';
@@ -309,18 +348,19 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.92);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
     font-weight: 700;
-    color: white;
+    color: var(--primary);
     margin: 0;
     backdrop-filter: blur(4px);
   }
   .dark-mode .avatar {
     background: #1e293b;
+    color: var(--text-dark);
   }
 
   /* Project card enhancements */
