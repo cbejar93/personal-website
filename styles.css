@@ -49,6 +49,15 @@
     position: relative;
     z-index: 1;
   }
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-text h1 {
+    order: -1;
+    margin-bottom: 0.25rem;
+  }
   header h1 {
     margin: 0;
     font-size: 2.5rem;
@@ -224,6 +233,14 @@
   .toggle-btn:hover {
     background-color: #2746a6;
   }
+  @media (min-width: 768px) {
+    .toggle-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+    }
+  }
   #blurb{
     text-align: left;
   }
@@ -247,13 +264,18 @@
   }
   @media (max-width: 600px) {
     header {
-      padding-top: 6rem;
+      padding-top: 4rem;
+      padding-bottom: 1.25rem;
     }
     header h1 {
       font-size: 1.8rem;
     }
     header p {
       font-size: 1rem;
+      margin-top: 0.2rem;
+    }
+    header .social-icons {
+      margin-top: 0.5rem;
     }
     .skill-card {
       width: 80px;
@@ -272,13 +294,14 @@
     }
   }
 
-  /* Avatar outer — sits between header and container, straddles the boundary */
+  /* Avatar outer — hidden on mobile, shown on desktop with fade-in */
   .avatar-outer {
-    display: flex;
-    justify-content: center;
-    margin-top: -54px;  /* half of 108px default avatar size */
+    display: none;
     position: relative;
     z-index: 10;
+  }
+  @keyframes avatarFadeIn {
+    to { opacity: 1; }
   }
 
   /* Avatar */
@@ -316,10 +339,13 @@
   /* Large-screen hero: avatar straddles left via negative margin, text centered */
   @media (min-width: 768px) {
     .avatar-outer {
+      display: flex;
       width: 100%;
       margin: -65px 0 0;
       justify-content: flex-start;
       padding-left: max(1rem, calc((100% - 900px) / 2 + 1rem));
+      opacity: 0;
+      animation: avatarFadeIn 0.5s ease 0.15s forwards;
     }
     .avatar-wrapper {
       width: 130px;
@@ -813,7 +839,8 @@
     .dark-mode footer,
     #tagline-text::after,
     .status-dot,
-    .experience-item::before {
+    .experience-item::before,
+    .avatar-outer {
       animation: none !important;
     }
   }
