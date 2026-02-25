@@ -54,33 +54,37 @@ function typeWriter(elementId, phrases, speed = 80, pause = 2000) {
   tick();
 }
 
-// function for handling clicks to collapse content sections
+// Click handler for collapsible sections
 document.querySelectorAll('.collapsible').forEach(button => {
   button.addEventListener('click', () => {
     const content = button.nextElementSibling;
     button.classList.toggle('active');
-    content.classList.toggle('collapsed');
-    if (!content.classList.contains('collapsed')) {
+
+    if (content.classList.contains('collapsed')) {
+      // Opening: animate from 0 → scrollHeight, then release the cap
+      content.classList.remove('collapsed');
       content.style.maxHeight = content.scrollHeight + 'px';
+      content.addEventListener('transitionend', () => {
+        if (!content.classList.contains('collapsed')) {
+          content.style.maxHeight = 'none';
+        }
+      }, { once: true });
     } else {
+      // Closing: pin to current height first so transition has a numeric start
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.offsetHeight; // force reflow
+      content.classList.add('collapsed');
       content.style.maxHeight = null;
     }
   });
 });
 
-// Initialize collapsed state
+// Initialize: all sections start expanded with no max-height cap
 document.querySelectorAll('.collapsible').forEach(button => {
   const content = button.nextElementSibling;
   button.classList.add('active');
   content.classList.remove('collapsed');
-  content.style.maxHeight = content.scrollHeight + 'px';
-});
-
-// Recalculate max-height after fonts load to prevent content clipping
-document.fonts.ready.then(() => {
-  document.querySelectorAll('.collapsible-content:not(.collapsed)').forEach(content => {
-    content.style.maxHeight = content.scrollHeight + 'px';
-  });
+  content.style.maxHeight = 'none';
 });
 
 function initStarField() {

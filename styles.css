@@ -871,6 +871,35 @@
     border-radius: 4px;
   }
 
+  /* Hero location line */
+  .hero-location {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.8);
+    margin: 0.35rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+
+  /* Currently exploring */
+  .currently-exploring {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0.75rem 0 0;
+    width: 100%;
+  }
+  .exploring-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
   /* Accessibility: disable all animations for users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     header h1,
