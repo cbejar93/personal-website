@@ -56,14 +56,14 @@
 
     /* ── Dark toggle ── */
     .theme-btn {
-      position: fixed; top: 18px; right: 18px; z-index: 100;
-      width: 40px; height: 40px; border-radius: 50%;
+      position: fixed; bottom: 28px; right: 28px; z-index: 100;
+      width: 48px; height: 48px; border-radius: 50%;
       background: var(--ink); color: var(--bg);
       border: none; cursor: pointer;
       display: grid; place-items: center;
-      font-size: 17px;
+      font-size: 18px;
       transition: background 0.3s, color 0.3s, transform 0.2s;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     }
     .theme-btn:hover { transform: scale(1.1); }
 
@@ -334,7 +334,6 @@
     @media (max-width: 900px) {
       .nav { padding: 16px 24px; }
       .nav-links { display: none; }
-      .theme-btn { top: 16px; right: 68px; }
 
       .hero { grid-template-columns: 1fr; }
       .hero-left { padding: 40px 24px 32px; border-right: none; border-bottom: 1.5px solid var(--rule); }
@@ -466,6 +465,8 @@
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
           <span class="tag">JavaScript</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">MongoDB</span>
         </div>
       </a>
       <a href="https://github.com/cbejar93/personal-website" target="_blank" rel="noopener" class="project-card">
