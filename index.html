@@ -3,392 +3,624 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carlos Bejar | Software Engineer Portfolio</title>
-  <meta name="description" content="Carlos Bejar - Software Engineer specializing in full-stack development, Node.js, and cloud-native applications." />
-  <meta property="og:title" content="Carlos Bejar | Software Engineer Portfolio" />
-  <meta property="og:description" content="Full-Stack Developer specializing in Node.js, TypeScript, and cloud-native applications." />
+  <title>Carlos Bejar | Software Engineer</title>
+  <meta name="description" content="Carlos Bejar — Software engineer specializing in full-stack development, Node.js, and cloud-native applications. Based in Oakland, CA." />
+  <meta property="og:title" content="Carlos Bejar | Software Engineer" />
+  <meta property="og:description" content="Full-stack developer. Node.js, TypeScript, cloud-native." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://cbejar93.github.io/personal-website/" />
-  <meta property="og:image" content="https://github.com/cbejar93.png" />
-  <meta property="og:image:width" content="400" />
-  <meta property="og:image:height" content="400" />
-  <link rel="canonical" href="https://cbejar93.github.io/personal-website/" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Carlos Bejar",
-    "url": "https://cbejar93.github.io/personal-website/",
-    "sameAs": [
-      "https://github.com/cbejar93",
-      "https://www.linkedin.com/in/carlos-bejar-990726148/"
-    ],
-    "jobTitle": "Software Engineer",
-    "email": "cbejar93@gmail.com",
-    "knowsAbout": ["JavaScript", "TypeScript", "Node.js", "React", "Angular", "Java", "Docker", "MongoDB"]
-  }
-  </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a74d3cc9b5.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <script>
-    (function () {
-      var saved = localStorage.getItem('theme');
-      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (saved === 'dark' || (!saved && prefersDark)) {
-        document.documentElement.classList.add('dark-mode-early');
-      }
-    })();
-  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a1206'/><text x='50' y='68' text-anchor='middle' font-family='serif' font-size='54' fill='%23f97316'>CB</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --bg:       #faf7f2;
+      --bg-card:  #ffffff;
+      --ink:      #1a1206;
+      --muted:    #6b5a45;
+      --rule:     #e8dfd0;
+      --accent:   #f97316;
+      --accent-bg:rgba(249,115,22,0.08);
+      --green:    #4ade80;
+      --serif:    'DM Serif Display', Georgia, serif;
+      --mono:     'DM Mono', ui-monospace, monospace;
+    }
+    [data-theme="dark"] {
+      --bg:       #1a1206;
+      --bg-card:  #241a0e;
+      --ink:      #f5ede0;
+      --muted:    #a0886a;
+      --rule:     #2e2016;
+      --accent:   #fb923c;
+      --accent-bg:rgba(251,146,60,0.1);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--ink);
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 99px; }
+
+    /* ── Dark toggle ── */
+    .theme-btn {
+      position: fixed; bottom: 28px; right: 28px; z-index: 100;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--ink); color: var(--bg);
+      border: none; cursor: pointer;
+      display: grid; place-items: center;
+      font-size: 18px;
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .theme-btn:hover { transform: scale(1.1); }
+
+    /* ── Nav ── */
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 56px;
+      border-bottom: 1.5px solid var(--rule);
+      background: var(--bg);
+      position: sticky; top: 0; z-index: 40;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .nav-mark {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--ink); color: var(--accent);
+      display: grid; place-items: center;
+      font-family: var(--mono); font-weight: 700; font-size: 12px;
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+    .nav-name {
+      font-size: 14px; font-weight: 500; letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex; gap: 36px;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-resume {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 700; color: var(--ink); background: var(--accent);
+      padding: 9px 22px; transition: opacity 0.15s;
+    }
+    .nav-resume:hover { opacity: 0.85; }
+
+    /* ── Hero ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1.5px solid var(--rule);
+      min-height: 480px;
+    }
+    .hero-left {
+      padding: 60px 56px;
+      border-right: 1.5px solid var(--rule);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .hero-right {
+      padding: 60px 56px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--ink); color: var(--bg);
+      padding: 6px 14px;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 32px; align-self: flex-start;
+      transition: background 0.3s, color 0.3s;
+    }
+    .status-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.6; transform:scale(1.3); }
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(64px, 8vw, 108px);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin-bottom: 26px;
+    }
+    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-tagline {
+      font-size: 15px; line-height: 1.7; color: var(--muted);
+      max-width: 400px; margin-bottom: 32px;
+    }
+    .hero-socials {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .hero-social-link {
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 9px 16px; border: 1.5px solid var(--rule);
+      color: var(--ink); font-weight: 500;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .hero-social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Stats */
+    .stats-grid {
+      display: flex; flex-direction: column; gap: 1px;
+      background: var(--rule); margin-bottom: 24px;
+    }
+    .stat-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 20px 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.3s;
+    }
+    .stat-num {
+      font-family: var(--serif); font-size: 52px;
+      line-height: 1; color: var(--accent);
+    }
+    .stat-label {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    }
+    .tech-strip {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); line-height: 2.2;
+    }
+
+    /* ── Section wrapper ── */
+    .section {
+      padding: 72px 56px;
+      border-bottom: 1.5px solid var(--rule);
+      max-width: 1440px; margin: 0 auto;
+    }
+    .sec-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 44px; flex-wrap: wrap; gap: 12px;
+    }
+    .sec-title {
+      font-family: var(--serif); font-size: clamp(36px, 5vw, 52px);
+      letter-spacing: -0.01em;
+    }
+    .sec-meta {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── Projects ── */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .project-card {
+      display: block;
+      background: var(--bg-card); border: 1.5px solid var(--rule);
+      padding: 32px; color: var(--ink);
+      transition: box-shadow 0.2s, border-color 0.2s, background 0.3s;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 4px 4px 0 0 var(--accent);
+    }
+    .project-eyebrow {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin-bottom: 6px;
+    }
+    .project-name {
+      font-family: var(--serif); font-size: 30px; line-height: 1;
+      margin-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .project-arrow { color: var(--accent); font-size: 20px; flex-shrink: 0; margin-left: 12px; }
+    .project-desc {
+      font-size: 13px; line-height: 1.7; color: var(--muted); margin-bottom: 18px;
+    }
+    .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 10px; background: var(--accent-bg); color: var(--accent); font-weight: 700;
+      border-radius: 2px;
+    }
+
+    /* ── Skills ── */
+    .skills-layout {
+      display: grid; grid-template-columns: 180px 1fr; gap: 64px; align-items: start;
+    }
+    .skills-label {
+      font-family: var(--serif); font-size: 44px; line-height: 0.9;
+      letter-spacing: -0.01em;
+    }
+    .skills-groups {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    .skill-group-label {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin-bottom: 14px;
+    }
+    .skill-pills { display: flex; flex-direction: column; gap: 8px; }
+    .skill-pill {
+      font-size: 13px; color: var(--ink); padding: 8px 14px;
+      border: 1.5px solid var(--rule); background: var(--bg-card);
+      display: inline-block; align-self: flex-start;
+      transition: border-color 0.15s, color 0.15s, background 0.3s;
+    }
+    .skill-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Experience ── */
+    .exp-item {
+      border-left: 2px solid var(--accent); padding-left: 28px;
+      margin-bottom: 40px;
+    }
+    .exp-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .exp-role {
+      font-family: var(--serif); font-size: 24px; line-height: 1.1;
+    }
+    .exp-company {
+      font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 12px;
+    }
+    .exp-dates {
+      font-size: 11px; letter-spacing: 0.06em; color: var(--muted); white-space: nowrap;
+      padding-top: 6px;
+    }
+    .exp-bullets {
+      list-style: none; display: flex; flex-direction: column; gap: 8px;
+    }
+    .exp-bullets li {
+      font-size: 14px; line-height: 1.6; color: var(--muted); padding-left: 16px; position: relative;
+    }
+    .exp-bullets li::before {
+      content: '→'; position: absolute; left: 0; color: var(--accent);
+    }
+
+    /* ── Contact ── */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
+    }
+    .contact-intro {
+      font-family: var(--serif); font-size: 36px; line-height: 1.1;
+      letter-spacing: -0.01em; margin-bottom: 16px;
+    }
+    .contact-sub { font-size: 14px; line-height: 1.7; color: var(--muted); }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 20px; border: 1.5px solid var(--rule);
+      background: var(--bg-card); color: var(--ink);
+      font-size: 13px; letter-spacing: 0.04em;
+      transition: border-color 0.15s, background 0.3s;
+    }
+    .contact-link:hover { border-color: var(--accent); }
+    .contact-link span { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+    .contact-email-cta {
+      display: block; text-align: center; padding: 18px;
+      background: var(--ink); color: var(--bg);
+      font-size: 14px; letter-spacing: 0.06em; margin-bottom: 12px;
+      transition: opacity 0.15s, background 0.3s, color 0.3s;
+    }
+    .contact-email-cta:hover { opacity: 0.85; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 32px 56px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); flex-wrap: wrap; gap: 12px;
+      max-width: 1440px; margin: 0 auto;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 40px 24px 32px; border-right: none; border-bottom: 1.5px solid var(--rule); }
+      .hero-right { padding: 32px 24px 40px; }
+      .hero-name { font-size: 68px; }
+      .stats-grid { margin-bottom: 20px; }
+      .stat-num { font-size: 40px; }
+
+      .section { padding: 48px 24px; }
+      .sec-header { margin-bottom: 28px; }
+
+      .projects-grid { grid-template-columns: 1fr; gap: 16px; }
+      .project-card { padding: 24px; }
+
+      .skills-layout { grid-template-columns: 1fr; gap: 28px; }
+      .skills-label { font-size: 36px; }
+      .skills-groups { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+
+      footer { padding: 28px 24px; }
+    }
+
+    @media (max-width: 560px) {
+      .nav-name { display: none; }
+      .hero-name { font-size: 54px; }
+      .stat-num { font-size: 36px; }
+      .skills-groups { grid-template-columns: 1fr; }
+      .sec-title { font-size: 32px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; }
+      .status-dot { animation: none; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-      <canvas id="hero-stars" aria-hidden="true"></canvas>
-      <div class="hero-content">
-        <button class="toggle-btn" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
-          <i id="theme-icon" class="fas fa-moon"></i>
-        </button>
-        <div class="hero-text">
-          <div class="status-badge">
-            <span class="status-dot"></span> Open to work
+
+  <!-- Dark mode toggle -->
+  <button class="theme-btn" id="theme-btn" aria-label="Toggle dark mode">🌙</button>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="nav-mark">CB</div>
+      <span class="nav-name">Carlos Bejar</span>
+    </div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="files/carlos-bejar-resume.pdf" download class="nav-resume">Resume ↓</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-left">
+      <div>
+        <div class="status-badge">
+          <span class="status-dot"></span>
+          Open to opportunities
+        </div>
+        <h1 class="hero-name">
+          Carlos<br>
+          <em>Bejar.</em>
+        </h1>
+        <p class="hero-tagline">Software engineer specializing in full-stack development, Node.js, and cloud-native applications. Based in Oakland, CA.</p>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/cbejar93" target="_blank" rel="noopener" class="hero-social-link">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/carlos-bejar-990726148/" target="_blank" rel="noopener" class="hero-social-link">LinkedIn ↗</a>
+        <a href="mailto:cbejar93@gmail.com" class="hero-social-link">Email</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stats-grid">
+        <div class="stat-row">
+          <span class="stat-num">5+</span>
+          <span class="stat-label">Years of experience</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">Projects shipped</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Tech stacks</span>
+        </div>
+      </div>
+      <div class="tech-strip">
+        Node.js · TypeScript · React · Angular · Vue · NestJS · OpenShift · PostgreSQL · MongoDB
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section class="section reveal" id="work">
+    <div class="sec-header">
+      <h2 class="sec-title">Selected Work</h2>
+      <span class="sec-meta">2022 — present</span>
+    </div>
+    <div class="projects-grid">
+      <a href="https://astrolounge.net" target="_blank" rel="noopener" class="project-card">
+        <div class="project-eyebrow">Full-Stack App · 2025</div>
+        <div class="project-name">
+          AstroLounge
+          <span class="project-arrow">↗</span>
+        </div>
+        <p class="project-desc">Social platform for sharing cosmic photography and musings. Features Google OAuth, JWT auth, post feeds with likes and reposts, and a 314-character post limit inspired by the cosmos.</p>
+        <div class="project-tags">
+          <span class="tag">NestJS</span>
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Supabase</span>
+        </div>
+      </a>
+      <a href="https://beer-run.fly.dev/" target="_blank" rel="noopener" class="project-card">
+        <div class="project-eyebrow">Event App · 2026</div>
+        <div class="project-name">
+          Beer Run
+          <span class="project-arrow">↗</span>
+        </div>
+        <p class="project-desc">Annual 3.4-mile run around Lake Merritt — a beer at every mile. Event app with RSVP flow (Going / Maybe / Out), live countdown, runner grid, route map, and a host dashboard.</p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">MongoDB</span>
+        </div>
+      </a>
+      <a href="https://github.com/cbejar93/personal-website" target="_blank" rel="noopener" class="project-card">
+        <div class="project-eyebrow">Personal Site · 2024</div>
+        <div class="project-name">
+          Portfolio
+          <span class="project-arrow">↗</span>
+        </div>
+        <p class="project-desc">This portfolio — vanilla HTML/CSS/JS with animated star field, dark mode with localStorage persistence, collapsible sections, and scroll-reveal animations.</p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section reveal" id="skills">
+    <div class="sec-header">
+      <h2 class="sec-title">Tech Stack</h2>
+    </div>
+    <div class="skills-layout">
+      <div class="skills-label">What<br><em style="font-style:italic;color:var(--accent)">I use.</em></div>
+      <div class="skills-groups">
+        <div>
+          <div class="skill-group-label">Frontend</div>
+          <div class="skill-pills">
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">TypeScript</span>
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">Angular</span>
+            <span class="skill-pill">Vue</span>
           </div>
-          <h1>Carlos Bejar</h1>
-          <div class="location-badge">
-            <i class="fas fa-map-marker-alt"></i> Oakland, CA &middot; Open to remote &amp; hybrid
+        </div>
+        <div>
+          <div class="skill-group-label">Backend</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">NestJS</span>
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">MongoDB</span>
+            <span class="skill-pill">OracleDB</span>
+            <span class="skill-pill">PLSQL</span>
           </div>
-          <p id="tagline-text"></p>
-<div class="social-icons">
-            <a href="https://github.com/cbejar93" target="_blank" rel="noopener" aria-label="GitHub">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/carlos-bejar-990726148/" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <i class="fab fa-linkedin"></i>
-            </a>
+        </div>
+        <div>
+          <div class="skill-group-label">Infra</div>
+          <div class="skill-pills">
+            <span class="skill-pill">OpenShift</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">GitHub</span>
+            <span class="skill-pill">Jenkins</span>
+            <span class="skill-pill">Spinnaker</span>
           </div>
         </div>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <div class="avatar-outer">
-      <div class="avatar-wrapper">
-        <div class="avatar" aria-hidden="true">CB</div>
+  <!-- Experience -->
+  <section class="section reveal" id="experience">
+    <div class="sec-header">
+      <h2 class="sec-title">Experience</h2>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Software Engineer</div>
+          <div class="exp-company">Cisco</div>
+        </div>
+        <span class="exp-dates">Jan 2022 – Present</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Developed and maintained distributed systems supporting large-scale network management products</li>
+        <li>Led modernisation initiatives migrating legacy services to cloud-native architectures on OpenShift</li>
+        <li>Drove cross-team migrations improving reliability, deployment velocity, and system observability</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Software Engineer</div>
+          <div class="exp-company">Infosys</div>
+        </div>
+        <span class="exp-dates">2019 – 2022</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>Built and maintained document processing systems and backend services for enterprise clients</li>
+        <li>Developed internal dashboards and reporting tools used by operations and business teams</li>
+        <li>Delivered full-stack features across Java and Node.js backends with OracleDB and MongoDB</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section reveal" id="contact">
+    <div class="sec-header">
+      <h2 class="sec-title">Get in touch</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro">Let's build something together.</p>
+        <p class="contact-sub">Open to new opportunities, interesting projects, and good conversations. I'm currently based in Oakland and available for full-time roles.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:cbejar93@gmail.com" class="contact-email-cta">
+          cbejar93@gmail.com →
+        </a>
+        <a href="https://github.com/cbejar93" target="_blank" rel="noopener" class="contact-link">
+          github.com/cbejar93
+          <span>GitHub ↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/carlos-bejar-990726148/" target="_blank" rel="noopener" class="contact-link">
+          linkedin.com/in/carlos-bejar
+          <span>LinkedIn ↗</span>
+        </a>
       </div>
     </div>
+  </section>
 
-    <div class="container">
-      <section>
-        <button class="collapsible" aria-expanded="true" aria-controls="about-section">
-          <span class="collapsible-title" id="about-heading">About Me</span>
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
-        </button>
-        <div class="collapsible-content">
-          <p id="blurb">
-            Software engineer with 6+ years of professional experience building distributed systems, full-stack applications, and the CI/CD workflows behind them. At Cisco, I lead modernization of global B2B supply chain infrastructure — driving major runtime and framework upgrades, improving fault tolerance, and shipping reliable software across the stack. I care about engineering quality, operational readiness, and working with teams that hold high standards.
-          </p>
-          <p class="currently-exploring">
-            <span class="exploring-label">Currently exploring</span>
-            <span class="tag">Kubernetes</span>
-            <span class="tag">Next.js</span>
-          </p>
-          <div class="skill-cards-section">
+  <!-- Footer -->
+  <footer>
+    <span>© <span id="year"></span> Carlos Bejar</span>
+    <span>Oakland, CA</span>
+    <span>Made with ☕</span>
+  </footer>
 
-            <div class="skill-category">
-              <h4 class="skill-group-label">Frontend</h4>
-              <div class="skill-cards-row">
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fab fa-js"></i></div>
-                  <span class="skill-card-name">JavaScript</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">8</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="devicon-typescript-plain"></i></div>
-                  <span class="skill-card-name">TypeScript</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">8</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-brands fa-angular"></i></div>
-                  <span class="skill-card-name">Angular</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">7</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-brands fa-react"></i></div>
-                  <span class="skill-card-name">React</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">3</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-brands fa-vuejs"></i></div>
-                  <span class="skill-card-name">Vue</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">1</span>
-                    <span class="skill-years-label">yr exp</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-            <div class="skill-category">
-              <h4 class="skill-group-label">Backend</h4>
-              <div class="skill-cards-row">
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-brands fa-node-js"></i></div>
-                  <span class="skill-card-name">Node.js</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">8</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fab fa-java"></i></div>
-                  <span class="skill-card-name">Java</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">7</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-solid fa-database"></i></div>
-                  <span class="skill-card-name">OracleDB</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">7</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-solid fa-database"></i></div>
-                  <span class="skill-card-name">MongoDB</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">8</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-solid fa-database"></i></div>
-                  <span class="skill-card-name">PLSQL</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">4</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+    const btn = document.getElementById('theme-btn');
 
-            <div class="skill-category">
-              <h4 class="skill-group-label">Infrastructure</h4>
-              <div class="skill-cards-row">
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-brands fa-redhat"></i></div>
-                  <span class="skill-card-name">OpenShift</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">6</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-brands fa-github"></i></div>
-                  <span class="skill-card-name">GitHub</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">8</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="fa-brands fa-docker"></i></div>
-                  <span class="skill-card-name">Docker</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">5</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon"><i class="devicon-jenkins-plain"></i></div>
-                  <span class="skill-card-name">Jenkins</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">7</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-                <div class="skill-card">
-                  <div class="skill-card-icon">
-                    <img src="https://cdn.simpleicons.org/spinnaker/fb923c" alt="Spinnaker" style="width:2rem;height:2rem;">
-                  </div>
-                  <span class="skill-card-name">Spinnaker</span>
-                  <div class="skill-card-hover">
-                    <span class="skill-years">3</span>
-                    <span class="skill-years-label">yrs exp</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('theme', theme);
+    }
 
-          </div>
-        </div>
-      </section>
+    btn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
 
-      <section>
-        <button class="collapsible" aria-expanded="true" aria-controls="experience-section">
-          <span class="collapsible-title" id="experience-heading">Experience</span>
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
-        </button>
-        <div class="collapsible-content">
-          <div class="experience-item">
-            <div class="experience-header">
-              <div>
-                <h3 class="experience-role">Software Engineer</h3>
-                <p class="experience-company">Cisco</p>
-              </div>
-              <span class="experience-dates">2022 – Present</span>
-            </div>
-            <ul class="experience-bullets">
-              <li>Led modernization of business-critical, distributed applications supporting global B2B supply chain workflows, improving system reliability and long-term maintainability.</li>
-              <li>Migrated a Java-based messaging queue service across platforms, reducing service downtime by 30% and improving fault tolerance.</li>
-              <li>Designed and enforced standardized messaging and structured logging practices, reducing MTTR and improving debugging efficiency by 40%.</li>
-              <li>Led major runtime and framework upgrades (Java 8 → 17, Angular 9 → 18), reducing technical debt and improving developer velocity.</li>
-              <li>Modernized CI/CD pipelines and deployment workflows, reducing deployment times by 35% and increasing release confidence.</li>
-              <li>Delivered end-to-end features across backend services and frontend applications with a focus on scalability, correctness, and operational readiness.</li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">Java</span>
-              <span class="tag">Angular</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">OpenShift</span>
-              <span class="tag">Jenkins</span>
-              <span class="tag">Spinnaker</span>
-              <span class="tag">Docker</span>
-            </div>
-          </div>
-          <div class="experience-item">
-            <div class="experience-header">
-              <div>
-                <h3 class="experience-role">Software Engineer</h3>
-                <p class="experience-company">Infosys</p>
-              </div>
-              <span class="experience-dates">2019 – 2022</span>
-            </div>
-            <ul class="experience-bullets">
-              <li>Led build-vs-buy initiatives to replace third-party services with in-house platforms, delivering $200K in annual cost savings while increasing system ownership.</li>
-              <li>Designed and implemented backend services and frontend workflows for complex, compliance-driven document systems.</li>
-              <li>Improved data access performance by redesigning data models and migrating to MongoDB, reducing query latency by 45%.</li>
-              <li>Built real-time operational dashboards using Node.js and Oracle DB, reducing manual reporting overhead by 80%.</li>
-            </ul>
-            <div class="project-tags">
-              <span class="tag">Node.js</span>
-              <span class="tag">Java</span>
-              <span class="tag">MongoDB</span>
-              <span class="tag">OracleDB</span>
-              <span class="tag">Angular</span>
-            </div>
-          </div>
-        </div>
-      </section>
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved || (prefersDark ? 'dark' : 'light'));
 
-      <section>
-        <button class="collapsible" aria-expanded="true" aria-controls="projects-section">
-          <span class="collapsible-title" id="projects-heading">Projects</span>
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
-        </button>
-        <div class="collapsible-content">
-          <div class="project">
-            <span class="featured-badge">Featured</span>
-            <div class="project-header">
-              <h3>AstroLounge</h3>
-              <a href="https://github.com/cbejar93/astroSocial" target="_blank" rel="noopener" class="project-link" aria-label="View AstroLounge on GitHub">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-            <p>A full-stack social app for sharing cosmic photography and musings, featuring Google OAuth, JWT auth, post feeds with likes/reposts, and a 314-character post limit.</p>
-            <div class="project-tags">
-              <span class="tag">NestJS</span>
-              <span class="tag">React</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">Supabase</span>
-            </div>
-            <a href="https://astrolounge.net" target="_blank" rel="noopener" class="project-site-link" aria-label="Visit AstroLounge website">
-              <i class="fas fa-external-link-alt"></i> astrolounge.net
-            </a>
-          </div>
-          <a href="https://github.com/cbejar93" target="_blank" rel="noopener" class="github-more-link">
-            <i class="fab fa-github"></i> View more projects on GitHub
-            <i class="fas fa-arrow-right github-more-arrow"></i>
-          </a>
-
-          <div class="project">
-            <div class="project-header">
-              <h3>Personal Portfolio</h3>
-              <a href="https://github.com/cbejar93/personal-website" target="_blank" rel="noopener" class="project-link" aria-label="View Portfolio source on GitHub">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-            <p>This portfolio — a vanilla HTML/CSS/JS site with animated gradient header, dark mode with localStorage persistence, collapsible sections, and scroll-reveal animations.</p>
-            <div class="project-tags">
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-              <span class="tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <button class="collapsible" aria-expanded="true" aria-controls="contact-section">
-          <span class="collapsible-title" id="contact-heading">Contact</span>
-          <i class="fas fa-chevron-right" aria-hidden="true"></i>
-        </button>
-        <div class="collapsible-content">
-          <p class="contact-tagline">Let's build something great together.</p>
-          <div class="contact-grid">
-            <a class="contact-card" id="email-contact-card" href="mailto:cbejar93@gmail.com" aria-label="Copy email address">
-              <div class="contact-card-icon"><i class="fa-solid fa-envelope"></i></div>
-              <div class="contact-card-body">
-                <span class="contact-card-label">Email</span>
-                <span class="contact-card-value">cbejar93@gmail.com</span>
-              </div>
-              <i class="fa-solid fa-arrow-right contact-card-arrow"></i>
-            </a>
-            <a class="contact-card" href="https://github.com/cbejar93" target="_blank" rel="noopener" aria-label="GitHub profile">
-              <div class="contact-card-icon"><i class="fa-brands fa-github"></i></div>
-              <div class="contact-card-body">
-                <span class="contact-card-label">GitHub</span>
-                <span class="contact-card-value">github.com/cbejar93</span>
-              </div>
-              <i class="fa-solid fa-arrow-right contact-card-arrow"></i>
-            </a>
-            <a class="contact-card" href="https://www.linkedin.com/in/carlos-bejar-990726148/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
-              <div class="contact-card-icon"><i class="fa-brands fa-linkedin"></i></div>
-              <div class="contact-card-body">
-                <span class="contact-card-label">LinkedIn</span>
-                <span class="contact-card-value">linkedin.com/in/carlos-bejar</span>
-              </div>
-              <i class="fa-solid fa-arrow-right contact-card-arrow"></i>
-            </a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <footer>
-      <p>&copy; <span id="current-year"></span> Carlos Bejar</p>
-    </footer>
-
-    <a href="files/carlos-bejar-resume.pdf" download class="resume-fab" aria-label="Download Resume">
-      <i class="fas fa-download"></i>
-      <span>Resume</span>
-    </a>
-
-    <script src="home.js"></script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
